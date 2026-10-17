@@ -1,19 +1,19 @@
-# Wii U Rear SensorBar — menu-only and always-on variants
+# Wii U Sensor bar Power Fix — AlwaysBar + MenuBar
 
 ifeq ($(strip $(DEVKITPRO)),)
 $(error "Please set DEVKITPRO. export DEVKITPRO=/opt/devkitpro")
 endif
 
-VARIANT ?= menu
+VARIANT ?= alwaysbar
 
-ifeq ($(VARIANT),always)
-  TARGET := rearsensorbar-always
-  BUILD := build-always
-  MODE_FLAGS := -DREAR_SENSORBAR_ALWAYS_ON=1
+ifeq ($(VARIANT),alwaysbar)
+  TARGET := sensorbarfix-alwaysbar
+  BUILD := build-alwaysbar
+  MODE_FLAGS := -DSENSOR_BAR_FIX_ALWAYSBAR=1
 else
-  TARGET := rearsensorbar-menu
-  BUILD := build-menu
-  MODE_FLAGS := -DREAR_SENSORBAR_ALWAYS_ON=0
+  TARGET := sensorbarfix-menubar
+  BUILD := build-menubar
+  MODE_FLAGS := -DSENSOR_BAR_FIX_ALWAYSBAR=0
 endif
 
 TOPDIR ?= $(CURDIR)
@@ -61,31 +61,31 @@ export INCLUDE := $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 export LIBPATHS := $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 export CFLAGS CXXFLAGS ASFLAGS LDFLAGS LIBS TARGET BUILD
 
-.PHONY: all menu always one releases clean $(BUILD)
+.PHONY: all alwaysbar menubar one releases clean $(BUILD)
 all: releases
 
-menu:
-	@$(MAKE) --no-print-directory VARIANT=menu one
+alwaysbar:
+	@$(MAKE) --no-print-directory VARIANT=alwaysbar one
 
-always:
-	@$(MAKE) --no-print-directory VARIANT=always one
+menubar:
+	@$(MAKE) --no-print-directory VARIANT=menubar one
 
 one: $(BUILD)
 
-releases: menu always
+releases: alwaysbar menubar
 	@mkdir -p $(CURDIR)/../releases
-	@cp -f $(CURDIR)/rearsensorbar-menu.wps $(CURDIR)/../releases/ 2>/dev/null || cp -f rearsensorbar-menu.wps ../releases/
-	@cp -f $(CURDIR)/rearsensorbar-always.wps $(CURDIR)/../releases/ 2>/dev/null || cp -f rearsensorbar-always.wps ../releases/
+	@cp -f $(CURDIR)/sensorbarfix-alwaysbar.wps $(CURDIR)/../releases/ 2>/dev/null || cp -f sensorbarfix-alwaysbar.wps ../releases/
+	@cp -f $(CURDIR)/sensorbarfix-menubar.wps $(CURDIR)/../releases/ 2>/dev/null || cp -f sensorbarfix-menubar.wps ../releases/
 
 $(BUILD):
 	@$(shell [ ! -d $(BUILD) ] && mkdir -p $(BUILD))
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile VARIANT=$(VARIANT)
 
 clean:
-	@rm -fr build-menu build-always build \
-		rearsensorbar-menu.wps rearsensorbar-menu.elf \
-		rearsensorbar-always.wps rearsensorbar-always.elf \
-		consolesensorbar-menu.wps consolesensorbar-always.wps consolesensorbar.wps
+	@rm -fr build-alwaysbar build-menubar build-menu build-always \
+		sensorbarfix-alwaysbar.wps sensorbarfix-alwaysbar.elf \
+		sensorbarfix-menubar.wps sensorbarfix-menubar.elf \
+		rearsensorbar-*.wps consolesensorbar-*.wps
 else
 .PHONY: all
 DEPENDS := $(OFILES:.o=.d)

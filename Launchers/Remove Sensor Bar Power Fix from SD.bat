@@ -8,8 +8,9 @@ if not "%DRIVE:~-1%"==":" set "DRIVE=%DRIVE%:"
 
 set "PLUGINS=%DRIVE%\wiiu\environments\aroma\plugins"
 for %%F in (
-  consolesensorbar.wps consolesensorbar-menu.wps consolesensorbar-always.wps
+  sensorbarfix-alwaysbar.wps sensorbarfix-menubar.wps
   rearsensorbar-menu.wps rearsensorbar-always.wps
+  consolesensorbar.wps consolesensorbar-menu.wps consolesensorbar-always.wps
 ) do (
   if exist "%PLUGINS%\%%F" (
     del "%PLUGINS%\%%F"

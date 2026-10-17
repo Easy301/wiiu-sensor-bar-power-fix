@@ -1,44 +1,48 @@
-# Wii U Rear SensorBar
+# Wii U Sensor bar Power Fix
 
 The Wii U has this annoying "feature": the wired sensor bar in the red port on the back will not power on while you are on the main menu. It only lights up after you open vWii, or pair a third-party controller on the menu. Workarounds nobody should need just to use a Wii Remote on the couch.
 
-These [WiiUPluginSystem](https://github.com/wiiu-env/WiiUPluginSystem) plugins for [Aroma](https://aroma.wiiu.dev/) fix that. Turn the console on and the bar comes on. No vWii trip, no fake controller pairing. This is the rear AV port bar only, not the GamePad LEDs ([DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) handles those).
+[WiiUPluginSystem](https://github.com/wiiu-env/WiiUPluginSystem) plugins for [Aroma](https://aroma.wiiu.dev/) that power the **rear AV port** bar (not GamePad IR; see [DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) for that).
 
-There are **two builds**. Pick one:
+Download from [Releases](https://github.com/Easy301/wiiu-sensor-bar-power-fix/releases). Install **one** build.
 
-| Build | File | What it does |
-| --- | --- | --- |
-| **Menu** | `rearsensorbar-menu.wps` | Bar on in the **Wii U Menu** only. |
-| **Always** | `rearsensorbar-always.wps` | Bar stays on from boot: menu, games, apps, whatever you’re doing on the TV. |
+## AlwaysBar
 
-Download from [Releases](https://github.com/Easy301/wiiu-rear-sensorbar/releases). Don’t install both at once.
+**`sensorbarfix-alwaysbar.wps`** — what most people want.
+
+Turn the console on and the sensor bar comes on. It stays on in the menu, in games, in apps, whatever you are doing on the TV. No vWii trip, no pairing a controller just to get IR.
+
+## MenuBar
+
+**`sensorbarfix-menubar.wps`** — lighter option.
+
+Same fix on the **Wii U Menu only**. The bar turns off when you launch a game (closer to stock outside the menu).
 
 ## Install
 
-1. Install Aroma if you haven’t already.
-2. Grab a `.wps` from Releases.
-3. Put it in `SD:/wiiu/environments/aroma/plugins/`
-4. Reboot or reload plugins.
+1. Install Aroma.
+2. Copy **one** `.wps` to `SD:/wiiu/environments/aroma/plugins/`
+3. Reboot or reload plugins.
 
-To turn it off without deleting the file: WUPS menu, **L + D-Pad Down + Minus**.
+WUPS menu to disable: **L + D-Pad Down + Minus**.
+
+Windows SD copy scripts are in `Launchers/` (`Install AlwaysBar` / `Install MenuBar`).
 
 ## Limitations
 
-- I only tested with a normal Wii sensor bar in the rear port. USB bars are a different thing.
-- Same kind of WUPS limits as other plugins (HOME menu, some applets, etc. may behave oddly). If something breaks, disable the plugin and report an issue.
-- Don’t run both `.wps` files at once.
+- Tested with a normal Wii sensor bar in the rear port. USB bars are out of scope.
+- Usual WUPS caveats (HOME menu, some applets). If something acts up, disable the plugin.
+- Do not install AlwaysBar and MenuBar at the same time.
 
 ## Building
 
-You need [wut](https://github.com/devkitPro/wut) and [wups](https://github.com/wiiu-env/WiiUPluginSystem), or Docker:
-
 ```bash
 cd plugin
-docker build -t rearsensorbar-builder .
-docker run --rm -v ${PWD}:/project rearsensorbar-builder make all
+docker build -t sensorbarfix-builder .
+docker run --rm -v ${PWD}:/project sensorbarfix-builder make all
 ```
 
-That gives you both `.wps` files (`make menu` or `make always` if you only want one).
+That gives you both `.wps` files (`make alwaysbar` or `make menubar` for one).
 
 ## License
 

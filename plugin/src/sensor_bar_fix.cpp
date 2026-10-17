@@ -1,4 +1,4 @@
-#include "rear_sensorbar.h"
+#include "sensor_bar_fix.h"
 
 #include <coreinit/title.h>
 #include <padscore/kpad.h>
@@ -6,26 +6,25 @@
 
 #include "wpad_sensorbar_decl.h"
 
-// Wii U Menu title IDs (JPN / USA / EUR).
 static constexpr uint64_t TITLE_MENU_JPN = 0x0005001010040000ULL;
 static constexpr uint64_t TITLE_MENU_USA = 0x0005001010040100ULL;
 static constexpr uint64_t TITLE_MENU_EUR = 0x0005001010040200ULL;
 
-#ifndef REAR_SENSORBAR_ALWAYS_ON
-#define REAR_SENSORBAR_ALWAYS_ON 0
+#ifndef SENSOR_BAR_FIX_ALWAYSBAR
+#define SENSOR_BAR_FIX_ALWAYSBAR 0
 #endif
 
 static bool s_wpadReady = false;
 
-bool RearSensorBar_IsWiiUMenuTitle(uint64_t titleId) {
+bool SensorBarFix_IsWiiUMenuTitle(uint64_t titleId) {
     return titleId == TITLE_MENU_JPN || titleId == TITLE_MENU_USA || titleId == TITLE_MENU_EUR;
 }
 
-bool RearSensorBar_ShouldEnable() {
-#if REAR_SENSORBAR_ALWAYS_ON
+bool SensorBarFix_ShouldEnable() {
+#if SENSOR_BAR_FIX_ALWAYSBAR
     return true;
 #else
-    return RearSensorBar_IsWiiUMenuTitle(OSGetTitleID());
+    return SensorBarFix_IsWiiUMenuTitle(OSGetTitleID());
 #endif
 }
 
@@ -38,14 +37,14 @@ static void ensureWpad() {
     s_wpadReady = true;
 }
 
-void RearSensorBar_Enable() {
+void SensorBarFix_Enable() {
     ensureWpad();
     WPADEnableSensorBar(TRUE);
     WPADSetSensorBar(TRUE);
     WPADSetSensorBarPower(TRUE);
 }
 
-void RearSensorBar_Disable() {
+void SensorBarFix_Disable() {
     if (!s_wpadReady) {
         return;
     }
@@ -54,8 +53,8 @@ void RearSensorBar_Disable() {
     WPADEnableSensorBar(FALSE);
 }
 
-void RearSensorBar_Refresh() {
-    if (RearSensorBar_ShouldEnable()) {
-        RearSensorBar_Enable();
+void SensorBarFix_Refresh() {
+    if (SensorBarFix_ShouldEnable()) {
+        SensorBarFix_Enable();
     }
 }

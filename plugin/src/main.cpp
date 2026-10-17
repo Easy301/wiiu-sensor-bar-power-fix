@@ -1,18 +1,18 @@
-#include "rear_sensorbar.h"
+#include "sensor_bar_fix.h"
 
 #include <coreinit/alarm.h>
 #include <coreinit/thread.h>
 #include <coreinit/time.h>
 #include <wups.h>
 
-#if REAR_SENSORBAR_ALWAYS_ON
-#define PLUGIN_NAME "Rear SensorBar Always"
+#if SENSOR_BAR_FIX_ALWAYSBAR
+#define PLUGIN_NAME "AlwaysBar"
 #define PLUGIN_VERSION "1.0.0"
-#define PLUGIN_DESC "Keep the wired sensor bar (rear AV port) on in all Wii U titles."
+#define PLUGIN_DESC "Wii U Sensor bar Power Fix: bar on from boot, stays on in games and apps."
 #else
-#define PLUGIN_NAME "Rear SensorBar Menu"
+#define PLUGIN_NAME "MenuBar"
 #define PLUGIN_VERSION "1.0.0"
-#define PLUGIN_DESC "Power the wired sensor bar (rear AV port) on the Wii U Menu."
+#define PLUGIN_DESC "Wii U Sensor bar Power Fix: bar on in the Wii U Menu only."
 #endif
 
 WUPS_PLUGIN_NAME(PLUGIN_NAME);
@@ -26,8 +26,8 @@ static OSAlarm sRefreshAlarm{};
 static bool sAlarmInited = false;
 
 static void refreshAlarmHandler(OSAlarm * /*alarm*/, OSContext * /*context*/) {
-    if (sEnabled && RearSensorBar_ShouldEnable()) {
-        RearSensorBar_Refresh();
+    if (sEnabled && SensorBarFix_ShouldEnable()) {
+        SensorBarFix_Refresh();
     }
 }
 
@@ -50,12 +50,12 @@ static void cancelRefresh() {
 }
 
 static void applyPowerState() {
-    if (sEnabled && RearSensorBar_ShouldEnable()) {
-        RearSensorBar_Enable();
+    if (sEnabled && SensorBarFix_ShouldEnable()) {
+        SensorBarFix_Enable();
         scheduleRefresh();
     } else {
         cancelRefresh();
-        RearSensorBar_Disable();
+        SensorBarFix_Disable();
     }
 }
 

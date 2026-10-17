@@ -2,12 +2,12 @@
 setlocal EnableExtensions
 cd /d "%~dp0.."
 
-set "SRC=%~dp0..\releases\rearsensorbar-menu.wps"
+set "SRC=%~dp0..\releases\sensorbarfix-alwaysbar.wps"
 set "DEFAULT=E:"
 
 if not exist "%SRC%" (
   echo.
-  echo   rearsensorbar-menu.wps is not built yet.
+  echo   sensorbarfix-alwaysbar.wps is not built yet.
   echo.
   pause
   exit /b 1
@@ -20,16 +20,14 @@ if not "%DRIVE:~-1%"==":" set "DRIVE=%DRIVE%:"
 
 set "PLUGINS=%DRIVE%\wiiu\environments\aroma\plugins"
 if not exist "%DRIVE%\wiiu" (
-  echo.
   echo   Could not find wiiu folder on %DRIVE%
-  echo.
   pause
   exit /b 1
 )
 
 if not exist "%PLUGINS%" mkdir "%PLUGINS%"
 
-copy /Y "%SRC%" "%PLUGINS%\rearsensorbar-menu.wps"
+copy /Y "%SRC%" "%PLUGINS%\sensorbarfix-alwaysbar.wps"
 if errorlevel 1 (
   echo Copy failed.
   pause
@@ -37,6 +35,6 @@ if errorlevel 1 (
 )
 
 echo.
-echo   Installed: %PLUGINS%\rearsensorbar-menu.wps
+echo   Installed AlwaysBar: %PLUGINS%\sensorbarfix-alwaysbar.wps
 echo.
 pause
