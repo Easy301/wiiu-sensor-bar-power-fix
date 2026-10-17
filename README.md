@@ -1,33 +1,45 @@
-# Wii U Sensor Bar Power project
+# Console SensorBar
 
-**Goal:** On **Aroma**, power the **wired Wii sensor bar** plugged into the **red port on the back of the Wii U** while you are on the **Wii U main menu** — without workarounds (Classic Controller, Boopair, vWii first, etc.).
+Wii U is weird about the **sensor bar in the red port on the back**. On the menu it’s usually off unless you’ve got a Wii Remote connected, you’re in vWii, or something else woke the Wii stack up.
 
-**Out of scope:** GamePad built-in IR. **[DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) does not apply** to the console port.
+These are [WiiUPluginSystem](https://github.com/wiiu-env/WiiUPluginSystem) plugins for [Aroma](https://aroma.wiiu.dev/) that power that **wired** bar from Wii U mode. They do **not** touch the GamePad’s built-in bar — that’s what [DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) is for.
 
-**Status:** **Working** — validated Oct 16, 2026. Two builds in `releases/` (menu-only + always-on). **Author:** easy301.
+## Pick one
 
-| Variant | File |
-|---------|------|
-| Menu only | `releases/consolesensorbar-menu.wps` |
-| Always on | `releases/consolesensorbar-always.wps` |
+Download from [Releases](https://github.com/Easy301/wiiu-console-sensorbar/releases):
 
-Install with `Launchers/Install ConsoleSensorBar Menu to SD.bat` or `…Always…`. Pick **one** — not both.
+- **`consolesensorbar-menu.wps`** — bar on while you’re on the Wii U Menu (what most people want).
+- **`consolesensorbar-always.wps`** — bar stays on in games and apps too. Handy if you’re on the GamePad but still want the TV bar lit for a PC, second player, whatever.
 
-**Gregory confirmed:** No IR on menu; IR on with BT controller, vWii, or vWii Classic game. USB bars **not** in scope.
+Only install **one** of them.
 
-**API:** `WPADSetSensorBarPower` in padscore (console bar). **Not** `VPADSetSensorBar` (GamePad). See `notes/other-ai-proposal-review.md`.
+## Install
 
-| Doc | Purpose |
-|-----|---------|
-| `docs/DESIGN.md` | Hardware, plugin plan |
-| `notes/GREGORY-NEXT-STEPS.md` | **What you do when SD is ready** |
-| `notes/profile-config.md` | USA / E: / Aroma |
-| `notes/BUILD-STATUS.md` | Whether `.wps` exists yet |
+1. Install Aroma if you haven’t already.
+2. Grab a `.wps` from Releases.
+3. Put it in `SD:/wiiu/environments/aroma/plugins/`
+4. Reboot or reload plugins.
 
-**Gregory (saved):** USA menu, Aroma latest, SD usually **E:**.
+To turn it off without deleting the file: WUPS menu — **L + D-Pad Down + Minus**.
 
-**When the plugin is built:** run `Launchers\Install ConsoleSensorBar to SD.bat` → boot menu → phone camera on **TV bar** → tell agent ON or OFF.
+## Limitations
 
-Everything stays in this folder. Nothing goes on the Desktop.
+- I only tested with a normal Wii sensor bar in the rear port. USB bars are a different thing.
+- Same kind of WUPS limits as other plugins (HOME menu, some applets, etc. may behave oddly — if something breaks, disable the plugin and report an issue).
+- Don’t run both `.wps` files at once.
 
-**You now:** nothing until we ping you for SD test.
+## Building
+
+You need [wut](https://github.com/devkitPro/wut) and [wups](https://github.com/wiiu-env/WiiUPluginSystem), or Docker:
+
+```bash
+cd plugin
+docker build -t consolesensorbar-builder .
+docker run --rm -v ${PWD}:/project consolesensorbar-builder make all
+```
+
+That spits out both `.wps` files (`make menu` or `make always` if you only want one).
+
+## License
+
+MIT

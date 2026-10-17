@@ -6,7 +6,7 @@
 
 #include "wpad_sensorbar_decl.h"
 
-// Wii U Menu (any region). Gregory is USA.
+// Wii U Menu title IDs (JPN / USA / EUR).
 static constexpr uint64_t TITLE_MENU_JPN = 0x0005001010040000ULL;
 static constexpr uint64_t TITLE_MENU_USA = 0x0005001010040100ULL;
 static constexpr uint64_t TITLE_MENU_EUR = 0x0005001010040200ULL;

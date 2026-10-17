@@ -5,3 +5,5 @@ plugin/*.elf
 plugin/*.lst
 plugin/*.map
 _hub-clone/
+notes/
+docs/
