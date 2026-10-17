@@ -12,17 +12,15 @@ Turn the console on and the sensor bar comes on. It stays on in the menu, in gam
 ## MenuBar
 
 **`sensorbarfix-menubar.wps`**
-
+Same as above but the sensor bar will turn off whenever a Wii U game or app is launched outside of the offical
 
 
 ## Install
 
 1. Copy **one** `.wps` to `SD:/wiiu/environments/aroma/plugins/`
-2. Reboot or reload plugins.
+2. Turn on your Wii U and make sure the plug is enabled, you can do this via the wups menu and then pressing the manage plugins button.
 
-WUPS menu to disable: **L + D-Pad Down + Minus**.
-
-Windows SD copy scripts are in `Launchers/` (`Install AlwaysBar` / `Install MenuBar`).
+How to open the plugin menu: **L + D-Pad Down + Minus button**.
 
 ## Limitations
 
