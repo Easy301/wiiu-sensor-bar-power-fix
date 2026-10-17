@@ -1,0 +1,7 @@
+plugin/build/
+plugin/build-menu/
+plugin/build-always/
+plugin/*.elf
+plugin/*.lst
+plugin/*.map
+_hub-clone/
