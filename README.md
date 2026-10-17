@@ -1,8 +1,8 @@
 # Console SensorBar
 
-The Wii U has an annoying quirk: the **wired sensor bar** in the **red port on the back** often won’t power on from the main menu. Usually it only lights up after you open **vWii**, or pair a **third-party controller** on the menu — workarounds nobody should need just to use a Wii Remote on the couch.
+The Wii U has an annoying quirk: the wired sensor bar in the red port on the back often won’t power on from the main menu. Usually it only lights up after you open vWii, or pair a third-party controller on the menu — workarounds nobody should need just to use a Wii Remote on the couch.
 
-These [WiiUPluginSystem](https://github.com/wiiu-env/WiiUPluginSystem) plugins for [Aroma](https://aroma.wiiu.dev/) fix that. Turn the console on and the bar comes on — no vWii trip, no fake controller pairing. This is the **rear-port** bar only, not the GamePad LEDs ([DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) handles those).
+These [WiiUPluginSystem](https://github.com/wiiu-env/WiiUPluginSystem) plugins for [Aroma](https://aroma.wiiu.dev/) fix that. Turn the console on and the bar comes on — no vWii trip, no fake controller pairing. This is the rear-port bar only, not the GamePad LEDs ([DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) handles those).
 
 There are **two builds**. Pick one:
 
