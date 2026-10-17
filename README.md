@@ -20,9 +20,8 @@ Same fix on the **Wii U Menu only**. The bar turns off when you launch a game (c
 
 ## Install
 
-1. Install Aroma.
-2. Copy **one** `.wps` to `SD:/wiiu/environments/aroma/plugins/`
-3. Reboot or reload plugins.
+1. Copy **one** `.wps` to `SD:/wiiu/environments/aroma/plugins/`
+2. Reboot or reload plugins.
 
 WUPS menu to disable: **L + D-Pad Down + Minus**.
 
@@ -30,9 +29,7 @@ Windows SD copy scripts are in `Launchers/` (`Install AlwaysBar` / `Install Menu
 
 ## Limitations
 
-- Tested with a normal Wii sensor bar in the rear port. USB bars are out of scope.
-- Usual WUPS caveats (HOME menu, some applets). If something acts up, disable the plugin.
-- Do not install AlwaysBar and MenuBar at the same time.
+You need a modded Wii U with [Aroma](https://aroma.wiiu.dev/) so WUPS plugins can load. Stock firmware won’t run this.
 
 ## Building
 
