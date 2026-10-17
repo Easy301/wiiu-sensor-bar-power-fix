@@ -1,17 +1,17 @@
 # Console SensorBar
 
-Wii U is weird about the **sensor bar in the red port on the back**. On the menu it’s usually off unless you’ve got a Wii Remote connected, you’re in vWii, or something else woke the Wii stack up.
+The Wii U has an annoying quirk: the **wired sensor bar** in the **red port on the back** often won’t power on from the main menu. Usually it only lights up after you open **vWii**, or pair a **third-party controller** on the menu — workarounds nobody should need just to use a Wii Remote on the couch.
 
-These are [WiiUPluginSystem](https://github.com/wiiu-env/WiiUPluginSystem) plugins for [Aroma](https://aroma.wiiu.dev/) that power that **wired** bar from Wii U mode. They do **not** touch the GamePad’s built-in bar — that’s what [DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) is for.
+These [WiiUPluginSystem](https://github.com/wiiu-env/WiiUPluginSystem) plugins for [Aroma](https://aroma.wiiu.dev/) fix that. Turn the console on and the bar comes on — no vWii trip, no fake controller pairing. This is the **rear-port** bar only, not the GamePad LEDs ([DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) handles those).
 
-## Pick one
+There are **two builds**. Pick one:
 
-Download from [Releases](https://github.com/Easy301/wiiu-console-sensorbar/releases):
+| Build | File | What it does |
+| --- | --- | --- |
+| **Menu** | `consolesensorbar-menu.wps` | Bar on in the **Wii U Menu** only. |
+| **Always** | `consolesensorbar-always.wps` | Bar stays on from boot — menu, games, apps, whatever you’re doing on the TV. |
 
-- **`consolesensorbar-menu.wps`** — bar on while you’re on the Wii U Menu (what most people want).
-- **`consolesensorbar-always.wps`** — bar stays on in games and apps too. Handy if you’re on the GamePad but still want the TV bar lit for a PC, second player, whatever.
-
-Only install **one** of them.
+Download from [Releases](https://github.com/Easy301/wiiu-console-sensorbar/releases). Don’t install both at once.
 
 ## Install
 
