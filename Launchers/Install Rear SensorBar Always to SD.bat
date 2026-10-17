@@ -2,12 +2,12 @@
 setlocal EnableExtensions
 cd /d "%~dp0.."
 
-set "SRC=%~dp0..\releases\consolesensorbar-always.wps"
+set "SRC=%~dp0..\releases\rearsensorbar-always.wps"
 set "DEFAULT=E:"
 
 if not exist "%SRC%" (
   echo.
-  echo   consolesensorbar-always.wps is not built yet.
+  echo   rearsensorbar-always.wps is not built yet.
   echo.
   pause
   exit /b 1
@@ -29,7 +29,7 @@ if not exist "%DRIVE%\wiiu" (
 
 if not exist "%PLUGINS%" mkdir "%PLUGINS%"
 
-copy /Y "%SRC%" "%PLUGINS%\consolesensorbar-always.wps"
+copy /Y "%SRC%" "%PLUGINS%\rearsensorbar-always.wps"
 if errorlevel 1 (
   echo Copy failed.
   pause
@@ -37,7 +37,6 @@ if errorlevel 1 (
 )
 
 echo.
-echo   Installed ALWAYS variant: %PLUGINS%\consolesensorbar-always.wps
-echo   Bar stays powered in games and menu. Do not install both variants at once.
+echo   Installed: %PLUGINS%\rearsensorbar-always.wps
 echo.
 pause

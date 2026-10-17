@@ -1,4 +1,4 @@
-#include "console_sensorbar.h"
+#include "rear_sensorbar.h"
 
 #include <coreinit/title.h>
 #include <padscore/kpad.h>
@@ -11,21 +11,21 @@ static constexpr uint64_t TITLE_MENU_JPN = 0x0005001010040000ULL;
 static constexpr uint64_t TITLE_MENU_USA = 0x0005001010040100ULL;
 static constexpr uint64_t TITLE_MENU_EUR = 0x0005001010040200ULL;
 
-#ifndef CONSOLE_SENSORBAR_ALWAYS_ON
-#define CONSOLE_SENSORBAR_ALWAYS_ON 0
+#ifndef REAR_SENSORBAR_ALWAYS_ON
+#define REAR_SENSORBAR_ALWAYS_ON 0
 #endif
 
 static bool s_wpadReady = false;
 
-bool ConsoleSensorBar_IsWiiUMenuTitle(uint64_t titleId) {
+bool RearSensorBar_IsWiiUMenuTitle(uint64_t titleId) {
     return titleId == TITLE_MENU_JPN || titleId == TITLE_MENU_USA || titleId == TITLE_MENU_EUR;
 }
 
-bool ConsoleSensorBar_ShouldEnable() {
-#if CONSOLE_SENSORBAR_ALWAYS_ON
+bool RearSensorBar_ShouldEnable() {
+#if REAR_SENSORBAR_ALWAYS_ON
     return true;
 #else
-    return ConsoleSensorBar_IsWiiUMenuTitle(OSGetTitleID());
+    return RearSensorBar_IsWiiUMenuTitle(OSGetTitleID());
 #endif
 }
 
@@ -38,15 +38,14 @@ static void ensureWpad() {
     s_wpadReady = true;
 }
 
-void ConsoleSensorBar_Enable() {
+void RearSensorBar_Enable() {
     ensureWpad();
-    // padscore: console sensor-bar control (NOT VPADSetSensorBar / GamePad IR).
     WPADEnableSensorBar(TRUE);
     WPADSetSensorBar(TRUE);
     WPADSetSensorBarPower(TRUE);
 }
 
-void ConsoleSensorBar_Disable() {
+void RearSensorBar_Disable() {
     if (!s_wpadReady) {
         return;
     }
@@ -55,8 +54,8 @@ void ConsoleSensorBar_Disable() {
     WPADEnableSensorBar(FALSE);
 }
 
-void ConsoleSensorBar_Refresh() {
-    if (ConsoleSensorBar_ShouldEnable()) {
-        ConsoleSensorBar_Enable();
+void RearSensorBar_Refresh() {
+    if (RearSensorBar_ShouldEnable()) {
+        RearSensorBar_Enable();
     }
 }

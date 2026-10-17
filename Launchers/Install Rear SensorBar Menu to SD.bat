@@ -2,13 +2,12 @@
 setlocal EnableExtensions
 cd /d "%~dp0.."
 
-set "SRC=%~dp0..\releases\consolesensorbar-menu.wps"
+set "SRC=%~dp0..\releases\rearsensorbar-menu.wps"
 set "DEFAULT=E:"
 
 if not exist "%SRC%" (
   echo.
-  echo   consolesensorbar-menu.wps is not built yet.
-  echo   Build with Docker in plugin\ or copy from GitHub releases\.
+  echo   rearsensorbar-menu.wps is not built yet.
   echo.
   pause
   exit /b 1
@@ -30,7 +29,7 @@ if not exist "%DRIVE%\wiiu" (
 
 if not exist "%PLUGINS%" mkdir "%PLUGINS%"
 
-copy /Y "%SRC%" "%PLUGINS%\consolesensorbar-menu.wps"
+copy /Y "%SRC%" "%PLUGINS%\rearsensorbar-menu.wps"
 if errorlevel 1 (
   echo Copy failed.
   pause
@@ -38,7 +37,6 @@ if errorlevel 1 (
 )
 
 echo.
-echo   Installed MENU variant: %PLUGINS%\consolesensorbar-menu.wps
-echo   Bar ON on Wii U Menu only. Remove the ALWAYS plugin if you use both.
+echo   Installed: %PLUGINS%\rearsensorbar-menu.wps
 echo.
 pause

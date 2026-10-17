@@ -1,17 +1,17 @@
-# Console SensorBar
+# Wii U Rear SensorBar
 
-The Wii U has this annoying "feature": the wired sensor bar in the red port on the back often won’t power on from the main menu. Usually it only lights up after you open vWii, or pair a third-party controller on the menu. Workarounds nobody should need just to use a Wii Remote on the couch.
+The Wii U has this annoying "feature": the wired sensor bar in the red port on the back will not power on while you are on the main menu. It only lights up after you open vWii, or pair a third-party controller on the menu. Workarounds nobody should need just to use a Wii Remote on the couch.
 
-These [WiiUPluginSystem](https://github.com/wiiu-env/WiiUPluginSystem) plugins for [Aroma](https://aroma.wiiu.dev/) fix that. Turn the console on and the bar comes on. No vWii trip, no fake controller pairing. This is the rear-port bar only, not the GamePad LEDs ([DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) handles those).
+These [WiiUPluginSystem](https://github.com/wiiu-env/WiiUPluginSystem) plugins for [Aroma](https://aroma.wiiu.dev/) fix that. Turn the console on and the bar comes on. No vWii trip, no fake controller pairing. This is the rear AV port bar only, not the GamePad LEDs ([DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) handles those).
 
 There are **two builds**. Pick one:
 
 | Build | File | What it does |
 | --- | --- | --- |
-| **Menu** | `consolesensorbar-menu.wps` | Bar on in the **Wii U Menu** only. |
-| **Always** | `consolesensorbar-always.wps` | Bar stays on from boot: menu, games, apps, whatever you’re doing on the TV. |
+| **Menu** | `rearsensorbar-menu.wps` | Bar on in the **Wii U Menu** only. |
+| **Always** | `rearsensorbar-always.wps` | Bar stays on from boot: menu, games, apps, whatever you’re doing on the TV. |
 
-Download from [Releases](https://github.com/Easy301/wiiu-console-sensorbar/releases). Don’t install both at once.
+Download from [Releases](https://github.com/Easy301/wiiu-rear-sensorbar/releases). Don’t install both at once.
 
 ## Install
 
@@ -34,8 +34,8 @@ You need [wut](https://github.com/devkitPro/wut) and [wups](https://github.com/w
 
 ```bash
 cd plugin
-docker build -t consolesensorbar-builder .
-docker run --rm -v ${PWD}:/project consolesensorbar-builder make all
+docker build -t rearsensorbar-builder .
+docker run --rm -v ${PWD}:/project rearsensorbar-builder make all
 ```
 
 That gives you both `.wps` files (`make menu` or `make always` if you only want one).

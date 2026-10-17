@@ -1,4 +1,4 @@
-# ConsoleSensorBar — menu-only and always-on variants (same source, two .wps files)
+# Wii U Rear SensorBar — menu-only and always-on variants
 
 ifeq ($(strip $(DEVKITPRO)),)
 $(error "Please set DEVKITPRO. export DEVKITPRO=/opt/devkitpro")
@@ -7,13 +7,13 @@ endif
 VARIANT ?= menu
 
 ifeq ($(VARIANT),always)
-  TARGET := consolesensorbar-always
+  TARGET := rearsensorbar-always
   BUILD := build-always
-  MODE_FLAGS := -DCONSOLE_SENSORBAR_ALWAYS_ON=1
+  MODE_FLAGS := -DREAR_SENSORBAR_ALWAYS_ON=1
 else
-  TARGET := consolesensorbar-menu
+  TARGET := rearsensorbar-menu
   BUILD := build-menu
-  MODE_FLAGS := -DCONSOLE_SENSORBAR_ALWAYS_ON=0
+  MODE_FLAGS := -DREAR_SENSORBAR_ALWAYS_ON=0
 endif
 
 TOPDIR ?= $(CURDIR)
@@ -74,8 +74,8 @@ one: $(BUILD)
 
 releases: menu always
 	@mkdir -p $(CURDIR)/../releases
-	@cp -f $(CURDIR)/consolesensorbar-menu.wps $(CURDIR)/../releases/ 2>/dev/null || cp -f consolesensorbar-menu.wps ../releases/
-	@cp -f $(CURDIR)/consolesensorbar-always.wps $(CURDIR)/../releases/ 2>/dev/null || cp -f consolesensorbar-always.wps ../releases/
+	@cp -f $(CURDIR)/rearsensorbar-menu.wps $(CURDIR)/../releases/ 2>/dev/null || cp -f rearsensorbar-menu.wps ../releases/
+	@cp -f $(CURDIR)/rearsensorbar-always.wps $(CURDIR)/../releases/ 2>/dev/null || cp -f rearsensorbar-always.wps ../releases/
 
 $(BUILD):
 	@$(shell [ ! -d $(BUILD) ] && mkdir -p $(BUILD))
@@ -83,9 +83,9 @@ $(BUILD):
 
 clean:
 	@rm -fr build-menu build-always build \
-		consolesensorbar-menu.wps consolesensorbar-menu.elf \
-		consolesensorbar-always.wps consolesensorbar-always.elf \
-		consolesensorbar.wps consolesensorbar.elf
+		rearsensorbar-menu.wps rearsensorbar-menu.elf \
+		rearsensorbar-always.wps rearsensorbar-always.elf \
+		consolesensorbar-menu.wps consolesensorbar-always.wps consolesensorbar.wps
 else
 .PHONY: all
 DEPENDS := $(OFILES:.o=.d)
