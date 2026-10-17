@@ -1,22 +1,19 @@
-# Wii U Sensor bar Power Fix
+# Wii U Sensor bar Power Fix Plugin
 
-The Wii U has this annoying "feature": the wired sensor bar in the red port on the back will not power on while you are on the main menu. It only lights up after you open vWii, or pair a third-party controller on the menu. Workarounds nobody should need just to use a Wii Remote on the couch.
-
-[WiiUPluginSystem](https://github.com/wiiu-env/WiiUPluginSystem) plugins for [Aroma](https://aroma.wiiu.dev/) that power the **rear AV port** bar (not GamePad IR; see [DRC Sensorbar](https://github.com/WiiDatabase/DRC-Sensorbar) for that).
+The Wii U has this annoying "feature": the sensor bar will not power on while you are on the Wii U main menu. It only lights up after you open vWii, or pair a third-party controller on the menu, this plugin for Aroma fixes that issue. This should make it much easier for users like myself who use their Wii U sensor bar for both Dolphin and the Wii U.
 
 Download from [Releases](https://github.com/Easy301/wiiu-sensor-bar-power-fix/releases). Install **one** build.
 
 ## AlwaysBar
 
-**`sensorbarfix-alwaysbar.wps`** — what most people want.
-
-Turn the console on and the sensor bar comes on. It stays on in the menu, in games, in apps, whatever you are doing on the TV. No vWii trip, no pairing a controller just to get IR.
+**`sensorbarfix-alwaysbar.wps`** 
+Turn the console on and the sensor bar comes on. It stays on in the menu, in games, in apps, whatever you are doing on the TV. 
 
 ## MenuBar
 
-**`sensorbarfix-menubar.wps`** — lighter option.
+**`sensorbarfix-menubar.wps`**
 
-Same fix on the **Wii U Menu only**. The bar turns off when you launch a game (closer to stock outside the menu).
+
 
 ## Install
 
@@ -29,7 +26,7 @@ Windows SD copy scripts are in `Launchers/` (`Install AlwaysBar` / `Install Menu
 
 ## Limitations
 
-You need a modded Wii U with [Aroma](https://aroma.wiiu.dev/) so WUPS plugins can load. Stock firmware won’t run this.
+You need a modded Wii U with Aroma so WUPS plugins can load. Stock firmware won’t run this.
 
 ## Building
 
